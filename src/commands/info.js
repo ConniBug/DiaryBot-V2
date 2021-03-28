@@ -1,4 +1,5 @@
 // eslint-disable-next-line no-unused-vars
+const fs = require('fs')
 
 var version = "";
 fs.readFile('../../Version.V', 'utf8', function (err,data) {

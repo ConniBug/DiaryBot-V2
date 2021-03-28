@@ -188,7 +188,15 @@ else {
     process.exit(1);
 }
 
-var Version = "1.0.0.1";
+var Version = "";
+
+fs.readFile('./Version.V', 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+    Version = data;
+});
+
 const cron = require("node-cron");
 cron.schedule('* * * * * *', function () {
     //console.log('running a task every second');
@@ -196,9 +204,11 @@ cron.schedule('* * * * * *', function () {
         if (err) {
           return console.log(err);
         }
-        if(data != Version) {
-            console.log("Restarting as we are outdated!");
-            process.exit(1);
-        } 
+        if(Version != "") {
+            if(data != Version) {
+                console.log("Restarting as we are outdated!");
+                process.exit(1);
+            } 
+        }
       });
 });

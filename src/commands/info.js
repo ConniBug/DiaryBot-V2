@@ -10,7 +10,13 @@ fs.readFile('./Version.V', 'utf8', function (err,data) {
     Version = data;
 });
 
-function getVersion() {
+function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+}  
+
+async function getVersion() {
     if(version == "") {
         fs.readFile('./Version.V', 'utf8', function (err,data) {
             if (err) {
@@ -18,17 +24,22 @@ function getVersion() {
             }
             if(version == "") {
                 if(data != version) {
-                    version = data
                     console.log(`version is: ${data}`);
+                    version = data
                 } 
             }
             return version;
-          });
+        });
+    } else {
+        return version;
     }
+    await sleep(1000);
+    return version;
 }
 
-exports.run = (bot, msg, args) => {
-    msg.channel.send(`Version: ${getVersion()}`);
+exports.run = async(bot, msg, args) => {
+    await getVersion();
+    msg.channel.send(`Version: ${await getVersion()}`);
 }
 
 exports.test = (bot) => {

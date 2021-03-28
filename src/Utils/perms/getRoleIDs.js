@@ -1,11 +1,16 @@
 exports.ids = (message) => {
-    roles = [
-        "YE",
-        "814321035172118568",
-        "814323682746695701",
-        "814323712261488680",
-        "814323737612648458"
-    ];
-    
+    if(message != "") {
+        roles = [
+            "YE",
+            message.guild.roles.cache.find(r => r.name === "diary group 1"),
+            message.guild.roles.cache.find(r => r.name === "diary group 2"),
+            message.guild.roles.cache.find(r => r.name === "diary group 3"),
+            message.guild.roles.cache.find(r => r.name === "diary group 4"),
+        ];
+    } else {
+        roles = [
+            "YE",
+        ];    
+    }
     return (roles);
 }

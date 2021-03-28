@@ -1,8 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 var diaryChannelName = "diaries";
-const roleIDs = require("../Utils/perms/getRoleIDs").ids();
+var roleIDs = "";
 
 exports.run = (bot, message, args) => {
+    if(roleIDs == "") {
+        roleIDs = require("../Utils/perms/getRoleIDs").ids(message);
+    }
     message.delete().catch(O_o => { });
 
     if (message.guild.me.hasPermission("MANAGE_CHANNELS")) {
@@ -34,7 +37,7 @@ exports.run = (bot, message, args) => {
                 {
                     id: message.author.id,
                     allow: ['VIEW_CHANNEL','SEND_MESSAGES'],
-                },                
+                },
                 {
                     id: message.guild.id,
                     deny: ['VIEW_CHANNEL','SEND_MESSAGES'],
@@ -77,10 +80,14 @@ exports.run = (bot, message, args) => {
 }
 
 exports.test = (bot) => {
+    if(roleIDs == "") {
+        roleIDs = require("../Utils/perms/getRoleIDs").ids("");
+    }
+
     bot.logging.log("Testing `roleIDs` import", "TESTING");
     if(roleIDs[0] != "YE") 
     {
-        bot.logging.log("Failed.", "ERROR", "TESTING");
+        bot.logging.log(`Failed roleIDs test. should have been "YE" but was ${roleIDs[0]}`, "ERROR", "TESTING");
         process.exit(1);
     }
     bot.logging.log("Done", "TESTING");

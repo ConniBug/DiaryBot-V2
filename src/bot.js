@@ -56,14 +56,18 @@ bot.config = config
 bot.commands = commands
 bot.logging = logging;
 bot.ownersDiscordTag = "Conni!~#0920";
-bot.versionNum = "V0.0.1.8b";
 
 // Read every file in ./commands and filter out the non-JS files
+logging.log('----------------------------', "GENERIC");
+logging.log(`0/${bot.commands.size} - Loading commands.`, "GENERIC");
+logging.log('----------------------------', "GENERIC");
+var cnt = 0;
 fs.readdirSync(path.resolve(__dirname, 'commands'))
     .filter(f => f.endsWith('.js'))
     .forEach(f => {
+        cnt++;
         // Attempt to load the file
-        logging.log(`Loading command ${f}`, "GENERIC");
+        logging.log(`${cnt}/${bot.commands.size} - Loading command ${f}`, "GENERIC");
         // console.log(`Loading command ${f}`)
         try {
             // Require the raw file
@@ -118,10 +122,18 @@ bot.on('ready', () => {
             if(bot.user.tag != "" &&
                invite != "" &&
                bot.user.id != "") {
+                logging.log('----------------------------', "TESTING");
                 logging.log(`Logged in with success.`, "TESTING");
+                logging.log('----------------------------', "TESTING");
+                logging.log("Finished bot connection test.", "TESTING");
+                logging.log('----------------------------', "TESTING");
                 process.exit(0);
             } else {
+                logging.log('----------------------------', "TESTING");
                 logging.log(`Logged in without success.`, "TESTING");
+                logging.log('----------------------------', "TESTING");
+                logging.log("Finished bot connection test.", "TESTING");
+                logging.log('----------------------------', "TESTING");
                 process.exit(1);
             }
         }
@@ -129,14 +141,11 @@ bot.on('ready', () => {
 })
 
 bot.on('message', message => {
-    // Ignore messages from bots and from DMs (non-guild channels)
     if (message.author.bot || !message.guild) {
         return
     }
 
-    // Just a shorthand variable
     let { content } = message
-    // Ignore any messages that don't start with the prefix
     if (!content.startsWith(config.prefix)) {
         return;
     }
@@ -155,7 +164,12 @@ bot.on('message', message => {
     if (commands.get(label)) {
         // ... get the command with that label and run it with the bot, the
         // message variable, and the args as parameters
-        commands.get(label).run(bot, message, args)
+        try {
+            commands.get(label).run(bot, message, args)
+        } catch(e) {
+            console.log(e);
+            // [Error: Uh oh!]
+        }
     }
 })
 
@@ -170,13 +184,15 @@ else if(process.argv[2] == "test") {
     var cnt = 0;
     bot.commands.forEach(e => {
         cnt++;
-        logging.log(`- ${e.help.name} ${cnt}/${bot.commands.size}`, "TESTING");
+        logging.log(`- ${cnt}/${bot.commands.size} - ${e.help.name}.js`, "TESTING");
         e.test(bot);
         logging.log('Passed.', "TESTING");
         logging.log('----------------------------', "TESTING");
     });
     logging.log('Completed.', "TESTING");
+    logging.log('----------------------------', "TESTING");
         
+    logging.log("Testing bot connection.", "TESTING");
     bot.login(config.token);
 } 
 else {
@@ -187,7 +203,6 @@ else {
 }
 
 var Version = "";
-
 fs.readFile('./Version.V', 'utf8', function (err,data) {
     if (err) {
       return console.log(err);

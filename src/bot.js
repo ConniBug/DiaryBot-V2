@@ -138,9 +138,7 @@ bot.on('message', message => {
     let { content } = message
     // Ignore any messages that don't start with the prefix
     if (!content.startsWith(config.prefix)) {
-        console.log(`${content} != %`)
-
-        return
+        return;
     }
 
     // Take all the text after the prefix and split it into an array,

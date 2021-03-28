@@ -2,10 +2,10 @@
 const ownershipCheck = require("../Utils/ownerChecks").diaryOwnershipCheck;
 
 exports.run = (bot, msg, args) => {
-    if(ownershipCheck(msg.channel, msg.user)) {
-        let newName = args.slice(0).join(' ');
-        message.channel.setName(newName);
-        message.reply(`Channel name changed to: ${newName}`);
+    if(ownershipCheck(msg.channel, msg.author)) {
+        let newName = args.join(' ');
+        msg.channel.setName(newName);
+        msg.reply(`Channel name changed to: ${newName}`);
     }
 }
 

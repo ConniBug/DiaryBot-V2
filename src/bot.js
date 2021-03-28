@@ -162,7 +162,7 @@ bot.on('message', message => {
 })
 
 // Only run the bot if the token was provided
-if(config.token) {
+if(config.token && !process.argv[2] == "test") {
     bot.login(config.token);
 } 
 else if(process.argv[2] == "test") {

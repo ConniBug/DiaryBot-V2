@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "DiaryBot-V2.",
   "main": "src/bot.js",
-  "repository": "https://github.com/ConniBug/DiaryBot-V2",
+  "repository": "https://github.com/ConniBug/DiaryBot-V2.git",
   "author": "Conni <Conni@spookiebois.com>",
   "license": "MIT",
   "dependencies": {

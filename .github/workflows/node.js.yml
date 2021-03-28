@@ -14,8 +14,8 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      BOT_TOKEN: ${{BOT_TOKEN}}
-      BOT_PREFIX: ${{BOT_PREFIX}}
+      BOT_TOKEN: ${{Secrets.BOT_TOKEN}}
+      BOT_PREFIX: ${{Secrets.BOT_PREFIX}}
     strategy:
       matrix:
         node-version: [14.x, 15.x]

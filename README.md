@@ -24,8 +24,3 @@ commands (everyone) -
 `<prefix>transfer <id/mention>` - Transfers ownership (doesn't give perms to view the channel just use commands)
 <br>
 `<prefix>archive` - archives the diary so only you and high ranking staff can see it (staff can unarchive them for you)
-<br>
-<br>
-extra commands (verified servers) -
-<br>
-`<prefix>submit` - starts the process of manually adding someone to the db

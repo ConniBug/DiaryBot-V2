@@ -48,6 +48,6 @@ exports.test = (bot) => {
 
 exports.help = {
     name: 'info',
-    usage: 'info',
+    usage: '*diary info',
     description: 'View Bot Infomation.'
 }

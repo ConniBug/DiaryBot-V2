@@ -34,6 +34,10 @@ exports.run = (bot, message, args) => {
                 {
                     id: message.author.id,
                     allow: ['VIEW_CHANNEL','SEND_MESSAGES'],
+                },                
+                {
+                    id: message.guild.id,
+                    deny: ['VIEW_CHANNEL','SEND_MESSAGES'],
                 },
                 {
                     id: roleIDs[1],
@@ -84,6 +88,6 @@ exports.test = (bot) => {
 
 exports.help = {
     name: 'create',
-    usage: 'create',
+    usage: '*diary create',
     description: 'Will create a new diary channel that only you have access to.'
 }

@@ -8,7 +8,7 @@ exports.run = (bot, msg, args) => {
         .setFooter(bot.ownersDiscordTag, `https://i.imgur.com/91GaUEd.png`)
         .setTitle('Diary-Bot - Commands');
     bot.commands.forEach(e => {
-        helpEmbed.addField(`${e.help.name} - ${e.help.usage}`, e.help.description, false);
+        helpEmbed.addField(`${e.help.name}`, e.help.description + "/n" + e.help.usage, false);
     })
     msg.channel.send(helpEmbed);
 }
@@ -19,6 +19,6 @@ exports.test = (bot) => {
 
 exports.help = {
     name: 'help',
-    usage: 'help',
+    usage: '*diary help',
     description: 'Lists all commands.'
 }

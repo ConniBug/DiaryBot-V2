@@ -5,13 +5,15 @@
   "main": "src/bot.js",
   "repository": "https://github.com/ConniBug/DiaryBot-V2",
   "author": "Conni <Conni@spookiebois.com>",
-  "license": "MIT",
+  "license": "AGPL-3.0 License",
   "dependencies": {
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0"
   },
   "scripts": {
     "start": "node .",
+    "build": "node .",
+    "test": "node .",
     "lint": "eslint src"
   },
   "devDependencies": {

@@ -10,6 +10,15 @@ fs.readFile('./Version.V', 'utf8', function (err,data) {
 });
 
 function getVersion() {
+    if(version == "") {
+        fs.readFile('./Version.V', 'utf8', function (err,data) {
+            if (err) {
+              return console.log(err);
+            }
+            console.log("Updated stored version info.")
+            Version = data;
+        });
+    }
     return version;
 }
 

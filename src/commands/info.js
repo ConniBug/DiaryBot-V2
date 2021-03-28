@@ -2,7 +2,7 @@
 const fs = require('fs')
 
 var version = "";
-fs.readFile('../../Version.V', 'utf8', function (err,data) {
+fs.readFile('./Version.V', 'utf8', function (err,data) {
     if (err) {
       return console.log(err);
     }

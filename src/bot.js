@@ -8,6 +8,9 @@ const logging = require('./Utils/logging');
 
 require('dotenv').config()
 
+//console.log(process.argv);
+
+
 // Super fancy config loader/validator
 const config = (() => {
     const token = process.env.BOT_TOKEN
@@ -15,20 +18,24 @@ const config = (() => {
     // If there isn't a token, the bot won't start, but if there is then
     // we want to make sure it's a valid bot token
     if (!token) {
-        logging.log('Missing BOT_TOKEN environment variable', "ERROR");
-        //console.error('Missing BOT_TOKEN environment variable')
-        process.exit(0)
+        if(process.argv[2] != "test") {
+            logging.log('Missing BOT_TOKEN environment variable', "ERROR");
+            //console.error('Missing BOT_TOKEN environment variable')
+            process.exit(0)
+        }
     }
 
     if (!/^[a-zA-Z0-9_.-]{59}$/.test(token)) {
-        logging.log('Invalid bot token!', "ERROR");
-        console.error('Invalid bot token!')
-        process.exit(1)
+        if(process.argv[2] != "test") {
+            logging.log('Invalid bot token!', "ERROR");
+            console.error('Invalid bot token!')
+            process.exit(1)
+        }
     }
 
     const prefix = process.env.BOT_PREFIX
 
-    if (!prefix) {
+    if (!prefix && process.argv[2] != "test") {
         logging.log('Missing BOT_PREFIX environment variable', "ERROR");
         console.error('Missing BOT_PREFIX environment variable')
         process.exit(1)
@@ -151,5 +158,18 @@ bot.on('message', message => {
 if(config.token) {
     bot.login(config.token);
 } else {
-    logging.log(`No valid token!`, "ERROR");
+    if(process.argv[2] == "test") {
+        logging.log(`Running tests. 0/${bot.commands.size}`);
+        var cnt = 0;
+        bot.commands.forEach(e => {
+            cnt++;
+            logging.log(`- ${e.help.name} ${cnt}/${bot.commands.size}`);
+            e.test(bot);
+            logging.log('Passed.');
+        });
+        logging.log('Completed.');
+        process.exit(0);
+    } else {
+        logging.log(`No valid token!`, "ERROR");
+    }
 }

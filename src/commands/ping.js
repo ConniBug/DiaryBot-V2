@@ -5,6 +5,10 @@ exports.run = (bot, msg, args) => {
     })
 }
 
+exports.test = (bot) => {
+
+}
+
 exports.help = {
     name: 'ping',
     usage: 'ping',

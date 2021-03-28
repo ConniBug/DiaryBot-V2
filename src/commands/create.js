@@ -72,6 +72,16 @@ exports.run = (bot, message, args) => {
     }
 }
 
+exports.test = (bot) => {
+    bot.logging.log("Testing `roleIDs` import");
+    if(roleIDs[0] != "YE") 
+    {
+        bot.logging.log("Failed.", "ERROR");
+        process.exit(1);
+    }
+    bot.logging.log("Done");
+}
+
 exports.help = {
     name: 'create',
     usage: 'create',

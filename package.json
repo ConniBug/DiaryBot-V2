@@ -14,7 +14,7 @@
   "scripts": {
     "start": "node .",
     "build": "node .",
-    "test": "node .",
+    "test": "node . test",
     "lint": "eslint src"
   },
   "devDependencies": {

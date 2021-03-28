@@ -16,7 +16,7 @@ const config = (() => {
     // we want to make sure it's a valid bot token
     if (!token) {
         logging.log('Missing BOT_TOKEN environment variable', "ERROR");
-        console.error('Missing BOT_TOKEN environment variable')
+        //console.error('Missing BOT_TOKEN environment variable')
         process.exit(1)
     }
 

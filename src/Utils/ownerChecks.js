@@ -3,9 +3,9 @@ var staffRoleID = "716273854594678844";
 
 function diaryOwnershipCheck(channel, user) {
     if (channel.topic !== `${diaryTopicNameStartsWith}${user.id}`) {
-        if(user.id === "299709641271672832") {
-            return true;
-        }
+        // if(user.id === "299709641271672832") {
+        //     return true;
+        // }
         return false;
     }
     return true;

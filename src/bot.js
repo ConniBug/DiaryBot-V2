@@ -8,8 +8,6 @@ const logging = require('./Utils/logging');
 
 require('dotenv').config()
 
-//console.log(process.argv);
-
 
 // Super fancy config loader/validator
 const config = (() => {
@@ -62,6 +60,7 @@ logging.log('----------------------------', "GENERIC");
 logging.log(`0/${bot.commands.size} - Loading commands.`, "GENERIC");
 logging.log('----------------------------', "GENERIC");
 var cnt = 0;
+
 fs.readdirSync(path.resolve(__dirname, 'commands'))
     .filter(f => f.endsWith('.js'))
     .forEach(f => {
@@ -119,10 +118,9 @@ bot.on('ready', () => {
         // console.log(`Click here to invite the bot to your guild:\n${invite}`)
 
         if(process.argv[2] == "test") {
-            if(bot.user.tag != "" &&
-               invite != "" &&
+            logging.log('----------------------------', "TESTING");
+            if(bot.user.tag != "" && invite != "" &&
                bot.user.id != "") {
-                logging.log('----------------------------', "TESTING");
                 logging.log(`Logged in with success.`, "TESTING");
                 logging.log('----------------------------', "TESTING");
                 logging.log("Finished bot connection test.", "TESTING");

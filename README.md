@@ -1,4 +1,5 @@
 # DiaryBot-V2
+[![Node.js CI](https://github.com/ConniBug/DiaryBot-V2/actions/workflows/node.js.yml/badge.svg)](https://github.com/ConniBug/DiaryBot-V2/actions/workflows/node.js.yml)
 
 This is a discord bot designed to allow users to create private channels witch they have full control over.
 

@@ -162,7 +162,7 @@ bot.on('message', message => {
 })
 
 // Only run the bot if the token was provided
-if(config.token && !process.argv[2] == "test") {
+if(config.token && (!process.argv[2] == "test" || !process.argv[2])) {
     bot.login(config.token);
 } 
 else if(process.argv[2] == "test") {
@@ -183,4 +183,7 @@ else if(process.argv[2] == "test") {
 } 
 else {
     logging.log(`No valid token!`, "ERROR");
+    console.log(config);
+    console.log(process.argv[2]);
+    process.exit(1);
 }

@@ -2,10 +2,6 @@
 
 This is a discord bot designed to allow users to create private channels witch they have full control over.
 
-Setup:
-- To setup the bot you will have to create a category named "diaries"
-- And thats it all of the new diaries will be placed into this category.
-
 commands (everyone) -
 <br> 
 `<prefix>info` - shows bot info

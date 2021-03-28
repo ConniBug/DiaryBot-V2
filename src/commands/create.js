@@ -73,13 +73,13 @@ exports.run = (bot, message, args) => {
 }
 
 exports.test = (bot) => {
-    bot.logging.log("Testing `roleIDs` import");
+    bot.logging.log("Testing `roleIDs` import", "TESTING");
     if(roleIDs[0] != "YE") 
     {
-        bot.logging.log("Failed.", "ERROR");
+        bot.logging.log("Failed.", "ERROR", "TESTING");
         process.exit(1);
     }
-    bot.logging.log("Done");
+    bot.logging.log("Done", "TESTING");
 }
 
 exports.help = {

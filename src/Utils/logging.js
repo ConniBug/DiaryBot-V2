@@ -2,6 +2,7 @@ const colors = require('colors');
 
 logLevel = "ALL";
 function getLogLevelNum(level) {
+    if(level == "TESTING")  return 0;
     if(level == "GENERIC")  return 1;
     if(level == "ERROR")    return 2;
     if(level == "DEBUG")    return 3;
@@ -27,8 +28,10 @@ function log(message, type = "DEBUG") {
 
     StartMessage = "";
     if(type == "ERROR") StartMessage = (`[${time}] - [` + type.red + `]`);
-    if(type == "GENERIC") StartMessage = (`[${time}] - [` + type.green + `]`);
-    if(type == "DEBUG") StartMessage = (`[${time}] - [` + type.gray + `]`);
+    else if(type == "GENERIC") StartMessage = (`[${time}] - [` + type.green + `]`);
+    else if(type == "DEBUG") StartMessage = (`[${time}] - [` + type.gray + `]`);
+    else if(type == "TESTING") StartMessage = (`[${time}] - [` + type.magenta + `]`);
+    else StartMessage = (`[${time}] - [` + type.gray + `]`);
 
     left = maxSize - StartMessage.length;
     function balence() {

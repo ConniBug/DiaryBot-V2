@@ -18,24 +18,20 @@ const config = (() => {
     // If there isn't a token, the bot won't start, but if there is then
     // we want to make sure it's a valid bot token
     if (!token) {
-        if(process.argv[2] != "test") {
-            logging.log('Missing BOT_TOKEN environment variable', "ERROR");
-            //console.error('Missing BOT_TOKEN environment variable')
-            process.exit(0)
-        }
+        logging.log('Missing BOT_TOKEN environment variable', "ERROR");
+        console.error('Missing BOT_TOKEN environment variable')
+        process.exit(0)
     }
 
     if (!/^[a-zA-Z0-9_.-]{59}$/.test(token)) {
-        if(process.argv[2] != "test") {
-            logging.log('Invalid bot token!', "ERROR");
-            console.error('Invalid bot token!')
-            process.exit(1)
-        }
+        logging.log('Invalid bot token!', "ERROR");
+        console.error('Invalid bot token!')
+        process.exit(1)
     }
 
     const prefix = process.env.BOT_PREFIX
 
-    if (!prefix && process.argv[2] != "test") {
+    if (!prefix) {
         logging.log('Missing BOT_PREFIX environment variable', "ERROR");
         console.error('Missing BOT_PREFIX environment variable')
         process.exit(1)
@@ -52,7 +48,7 @@ const intents = new Intents([
     "GUILD_MEMBERS",
 ]);
 // Create the client
-const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], ws: { intents }, fetchAllMembers: true, disableEveryone: true })
+const bot = new Client({ /*partials: ['MESSAGE', 'CHANNEL', 'REACTION'], */ws: { intents }, fetchAllMembers: true, disableEveryone: true })
 
 // Store the config and commands on the bot variable so as to make them
 // easily accessible in commands and other files
@@ -117,6 +113,18 @@ bot.on('ready', () => {
         // After generating the invite, log it to the console
         logging.log(`Click here to invite the bot to your guild:\n${invite}`, "GENERIC");
         // console.log(`Click here to invite the bot to your guild:\n${invite}`)
+
+        if(process.argv[2] == "test") {
+            if(bot.user.tag != "" &&
+               invite != "" &&
+               bot.user.id != "") {
+                logging.log(`Logged in with success.`, "TESTING");
+                process.exit(0);
+            } else {
+                logging.log(`Logged in without success.`, "TESTING");
+                process.exit(1);
+            }
+        }
     })
 })
 
@@ -155,20 +163,26 @@ bot.on('message', message => {
 
 // Only run the bot if the token was provided
 
-if(config.token) {
+if(config.token && !process.argv[2] == "test") {
     bot.login(config.token);
 } else {
     if(process.argv[2] == "test") {
-        logging.log(`Running tests. 0/${bot.commands.size}`);
+        logging.log('----------------------------', "TESTING");
+        logging.log(`Running tests. 0/${bot.commands.size}`, "TESTING");
+        logging.log('----------------------------', "TESTING");
         var cnt = 0;
         bot.commands.forEach(e => {
             cnt++;
-            logging.log(`- ${e.help.name} ${cnt}/${bot.commands.size}`);
+            logging.log(`- ${e.help.name} ${cnt}/${bot.commands.size}`, "TESTING");
             e.test(bot);
-            logging.log('Passed.');
+            logging.log('Passed.', "TESTING");
+            logging.log('----------------------------', "TESTING");
         });
-        logging.log('Completed.');
-        process.exit(0);
+        logging.log('Completed.', "TESTING");
+        
+        bot.login(config.token);
+        
+        //process.exit(0);
     } else {
         logging.log(`No valid token!`, "ERROR");
     }

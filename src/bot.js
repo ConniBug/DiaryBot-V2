@@ -17,7 +17,7 @@ const config = (() => {
     if (!token) {
         logging.log('Missing BOT_TOKEN environment variable', "ERROR");
         //console.error('Missing BOT_TOKEN environment variable')
-        process.exit(1)
+        process.exit(0)
     }
 
     if (!/^[a-zA-Z0-9_.-]{59}$/.test(token)) {

@@ -18,13 +18,13 @@ function getVersion() {
             }
             if(version == "") {
                 if(data != version) {
-                    console.log(`version is: ${data}`);
                     version = data
+                    console.log(`version is: ${data}`);
                 } 
             }
+            return version;
           });
     }
-    return version;
 }
 
 exports.run = (bot, msg, args) => {

@@ -13,7 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      BOT_TOKEN: ${{ secrets[format('{0}_AWS_ACCESS_KEY_ID', github.event.inputs.env)] }}
+      BOT_PREFIX: ${{ secrets[format('*diary', github.event.inputs.env)] }}
     strategy:
       matrix:
         node-version: [14.x, 15.x]

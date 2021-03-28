@@ -206,7 +206,7 @@ cron.schedule('* * * * * *', function () {
         }
         if(Version != "") {
             if(data != Version) {
-                console.log("Restarting as we are outdated!");
+                console.log(`Restarting as we are outdated! new version is: ${data}`);
                 process.exit(1);
             } 
         }

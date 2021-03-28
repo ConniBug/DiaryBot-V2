@@ -8,8 +8,10 @@
   "license": "AGPL-3.0 License",
   "dependencies": {
     "colors": "^1.4.0",
+    "cron": "^1.8.2",
     "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "node-cron": "^3.0.0"
   },
   "scripts": {
     "start": "node .",

@@ -187,3 +187,18 @@ else {
     console.log(process.argv[2]);
     process.exit(1);
 }
+
+var Version = "1.0.0.1";
+const cron = require("node-cron");
+cron.schedule('* * * * * *', function () {
+    //console.log('running a task every second');
+    fs.readFile('./Version.V', 'utf8', function (err,data) {
+        if (err) {
+          return console.log(err);
+        }
+        if(data != Version) {
+            console.log("Restarting as we are outdated!");
+            process.exit(1);
+        } 
+      });
+});

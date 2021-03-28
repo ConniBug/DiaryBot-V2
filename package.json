@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node .",
-    "build": "node .",
+    "build": "node . test",
     "test": "node . test",
     "lint": "eslint src"
   },

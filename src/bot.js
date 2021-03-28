@@ -162,28 +162,25 @@ bot.on('message', message => {
 })
 
 // Only run the bot if the token was provided
-
-if(config.token && !process.argv[2] == "test") {
+if(config.token) {
     bot.login(config.token);
-} else {
-    if(process.argv[2] == "test") {
+} 
+else if(process.argv[2] == "test") {
+    logging.log('----------------------------', "TESTING");
+    logging.log(`Running tests. 0/${bot.commands.size}`, "TESTING");
+    logging.log('----------------------------', "TESTING");
+    var cnt = 0;
+    bot.commands.forEach(e => {
+        cnt++;
+        logging.log(`- ${e.help.name} ${cnt}/${bot.commands.size}`, "TESTING");
+        e.test(bot);
+        logging.log('Passed.', "TESTING");
         logging.log('----------------------------', "TESTING");
-        logging.log(`Running tests. 0/${bot.commands.size}`, "TESTING");
-        logging.log('----------------------------', "TESTING");
-        var cnt = 0;
-        bot.commands.forEach(e => {
-            cnt++;
-            logging.log(`- ${e.help.name} ${cnt}/${bot.commands.size}`, "TESTING");
-            e.test(bot);
-            logging.log('Passed.', "TESTING");
-            logging.log('----------------------------', "TESTING");
-        });
-        logging.log('Completed.', "TESTING");
+    });
+    logging.log('Completed.', "TESTING");
         
-        bot.login(config.token);
-        
-        //process.exit(0);
-    } else {
-        logging.log(`No valid token!`, "ERROR");
-    }
+    bot.login(config.token);
+} 
+else {
+    logging.log(`No valid token!`, "ERROR");
 }

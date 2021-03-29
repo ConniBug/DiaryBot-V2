@@ -1,19 +1,16 @@
-const groupIDs = require("./getRoleIDs");
-
-exports.get = (channelName) => {
+exports.get = (message) => {
+    channelName = message.channel.parent.name.toLowerCase();;
     if(channelName === "diarys group 1") {
-        setTimeout(() => message.channel.updateOverwrite(groupIDs[1], { VIEW_CHANNEL: true  }), 2500);
+        return 1;
     }
     if(channelName === "diarys group 2") {
-        setTimeout(() => message.channel.updateOverwrite(groupIDs[2], { VIEW_CHANNEL: true  }), 2500);
+        return 2;
     }
     if(channelName === "diarys group 3") {
-        setTimeout(() => message.channel.updateOverwrite(groupIDs[3], { VIEW_CHANNEL: true  }), 2500);
+        return 3;
     }
     if(channelName === "diarys group 4") {
-        setTimeout(() => message.channel.updateOverwrite(groupIDs[4], { VIEW_CHANNEL: true  }), 2500);
+        return 4;
     }
-    // if(channelName === "diarys group 5") {
-    //   //  setTimeout(() => message.channel.updateOverwrite(group5RoleID, { VIEW_CHANNEL: true  }),2500);
-    // }
+    console.log(channelName);
 }

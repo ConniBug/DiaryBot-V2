@@ -6,13 +6,19 @@ exports.run = async(bot, msg, args) => {
     if (msg.mentions.members.first()) {
         userReference = msg.mentions.members.first().id;
     }
-    else {
+    else if(args[0]) {
         userReference = args[0];
+    } 
+    else if(args[1]) {
+        userReference = args[1];
     }
 
-    msg.reply(`Removing ${msg.guild.members.cache.find(r => r.id === userReference).user.username} from your diary!`)
+    var usr_cache = msg.guild.members.cache;
+    bot.logging.log(
+        `Removing ${usr_cache.find(r => r.id === userReference).user.username} from ${usr_cache.find(r => r.id === msg.author.id).user.username}'s diary!`);
+    msg.reply(`Removing ${usr_cache.find(r => r.id === userReference).user.username} from your diary!`);
 
-    channel.updateOverwrite(userReference, { });
+    channel.updateOverwrite(userReference, { VIEW_CHANNEL: null, SEND_MESSAGES: null });
 }
 
 exports.test = (bot) => {
@@ -22,5 +28,6 @@ exports.test = (bot) => {
 exports.help = {
     name: 'remove',
     usage: '*diary remove <id/mention>',
-    description: 'Remove people from your diary!'
+    description: 'Remove people from your diary!',
+    rank: 1
 }

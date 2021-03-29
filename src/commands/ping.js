@@ -12,5 +12,6 @@ exports.test = (bot) => {
 exports.help = {
     name: 'ping',
     usage: '*diary ping',
-    description: 'Pings the bot to check its connection speed.'
+    description: 'Pings the bot to check its connection speed.',
+    rank: 0
 }

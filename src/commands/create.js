@@ -96,5 +96,6 @@ exports.test = (bot) => {
 exports.help = {
     name: 'create',
     usage: '*diary create',
-    description: 'Will create a new diary channel that only you have access to.'
+    description: 'Will create a new diary channel that only you have access to.',
+    rank: 0
 }

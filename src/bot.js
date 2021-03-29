@@ -5,6 +5,7 @@ const fs = require('fs')
 const { Client, Intents } = require('discord.js')
 
 const logging = require('./Utils/logging');
+var checkOwnership = require("./Utils/ownerChecks").diaryOwnershipCheck;
 
 require('dotenv').config()
 
@@ -138,7 +139,7 @@ bot.on('ready', () => {
     })
 })
 
-bot.on('message', message => {
+bot.on('message', async message => {
     if (message.author.bot || !message.guild) {
         return
     }
@@ -163,7 +164,20 @@ bot.on('message', message => {
         // ... get the command with that label and run it with the bot, the
         // message variable, and the args as parameters
         try {
-            commands.get(label).run(bot, message, args)
+            var currentCommand = commands.get(label);
+            if(currentCommand.help.rank >= 1) {
+                if(currentCommand.help.rank >= 2 && message.author.id == "299709641271672832") {
+                    commands.get(label).run(bot, message, args);
+                } else {
+                    if(checkOwnership(message.channel, message.author)) {
+                        commands.get(label).run(bot, message, args);
+                    } else {
+                        message.reply("You do not have perms here.");
+                    }
+                }
+            } else {
+                commands.get(label).run(bot, message, args);
+            }
         } catch(e) {
             console.log(e);
             // [Error: Uh oh!]

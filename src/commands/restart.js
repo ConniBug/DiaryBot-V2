@@ -19,5 +19,6 @@ exports.test = (bot) => {
 exports.help = {
     name: 'restart',
     usage: '*diary restart',
-    description: 'restart. restart the bot'
+    description: 'restart. restart the bot',
+    rank: 3
 }

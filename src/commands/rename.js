@@ -31,5 +31,6 @@ exports.test = (bot) => {
 exports.help = {
     name: 'rename',
     usage: '*diary rename <new channel name>',
-    description: 'Renames your diary!'
+    description: 'Renames your diary!',
+    rank: 1
 }

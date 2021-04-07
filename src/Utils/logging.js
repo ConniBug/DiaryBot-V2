@@ -53,6 +53,8 @@ function log(message, type = "DEBUG") {
 
     maxSize = 55;
 
+    var time = getDateTime();
+    
     StartMessage = "";
     if (type == "ERROR") {
       StartMessage = `[${time}] - [` + type.red + `]`;

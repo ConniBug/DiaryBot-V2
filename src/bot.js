@@ -6,9 +6,37 @@ const { Client, Intents } = require('discord.js')
 
 const logging = require('./Utils/logging');
 var checkOwnership = require("./Utils/ownerChecks").diaryOwnershipCheck;
+var nodemailer = require('nodemailer');
 
 require('dotenv').config()
 
+
+var transporter = nodemailer.createTransport({
+    host: 'mail.spookiebois.club',
+    port: 587,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASS
+    }
+});
+  
+function sendMail(to_t, content, subject = "Tranquility") {
+    var mailOptions = {
+      from: process.env.EMAIL,
+      to: to_t,
+      subject: `${subject}`,
+      html: `${content}`, // html body
+      // text: 'That was easy!',
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      }
+    }); 
+}
+
+sendMail(process.env.ADMIN_EMAIL, "Diary Bot Started", "Diary Bot Started");
 
 // Super fancy config loader/validator
 const config = (() => {

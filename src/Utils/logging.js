@@ -1,5 +1,34 @@
 const colors = require('colors');
 
+var nodemailer = require('nodemailer');
+
+require("dotenv").config();
+
+var transporter = nodemailer.createTransport({
+    host: 'mail.spookiebois.club',
+    port: 587,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASS
+    }
+});
+  
+function sendMail(to_t, content, subject = "Tranquility") {
+    var mailOptions = {
+      from: process.env.EMAIL,
+      to: to_t,
+      subject: `${subject}`,
+      html: `${content}`, // html body
+      // text: 'That was easy!',
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      }
+    }); 
+}
+
 logLevel = "ALL";
 function getLogLevelNum(level) {
     if(level == "TESTING")  return 0;
@@ -22,13 +51,23 @@ function log(message, type = "DEBUG") {
         return;
     }
 
-    maxSize = 55
-
-    time = getDateTime().yellow;
+    maxSize = 55;
 
     StartMessage = "";
-    if(type == "ERROR") StartMessage = (`[${time}] - [` + type.red + `]`);
-    else if(type == "GENERIC") StartMessage = (`[${time}] - [` + type.green + `]`);
+    if (type == "ERROR") {
+      StartMessage = `[${time}] - [` + type.red + `]`;
+      sendMail(process.env.ADMIN_EMAIL, 
+        `
+      Time: ${time}
+      <br>
+      <br>
+      <div>
+      ${message}
+      </div>
+      `,
+      "Tranquility - Server API Error"
+      )
+    }    else if(type == "GENERIC") StartMessage = (`[${time}] - [` + type.green + `]`);
     else if(type == "DEBUG") StartMessage = (`[${time}] - [` + type.gray + `]`);
     else if(type == "TESTING") StartMessage = (`[${time}] - [` + type.magenta + `]`);
     else StartMessage = (`[${time}] - [` + type.gray + `]`);

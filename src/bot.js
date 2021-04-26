@@ -12,45 +12,45 @@ var transporter = nodemailer.createTransport({
     host: 'mail.spookiebois.club',
     port: 587,
     auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASS
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASS
     }
 });
-  
-function sendMail(to_t, content, subject = "Tranquility") {
+
+function sendMail(to_t, content, subject = "N/A") {
     var mailOptions = {
-      from: process.env.EMAIL,
-      to: to_t,
-      subject: `${subject}`,
-      html: `${content}`,
-      // text: 'That was easy!',
+        from: process.env.EMAIL,
+        to: to_t,
+        subject: `${subject}`,
+        html: `${content}`,
+        // text: 'That was easy!',
     };
-    
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      }
-    }); 
+
+    transporter.sendMail(mailOptions, function(error, info) {
+        if(error) {
+            console.log(error);
+        }
+    });
 }
 
 sendMail(process.env.ADMIN_EMAIL, "Diary Bot Started", "Diary Bot Started");
 
 const config = (() => {
     const token = process.env.BOT_TOKEN
-    if (!token) {
+    if(!token) {
         logging.log('Missing BOT_TOKEN environment variable', "ERROR");
         console.error('Missing BOT_TOKEN environment variable')
         process.exit(0)
     }
 
-    if (!/^[a-zA-Z0-9_.-]{59}$/.test(token)) {
+    if(!/^[a-zA-Z0-9_.-]{59}$/.test(token)) {
         logging.log('Invalid discord token!', "ERROR");
         console.error('Invalid discord token!')
         process.exit(1)
     }
 
     const prefix = process.env.BOT_PREFIX
-    if (!prefix) {
+    if(!prefix) {
         logging.log('Missing BOT_PREFIX env variable', "ERROR");
         console.error('Missing BOT_PREFIX env variable')
         process.exit(1)
@@ -61,10 +61,10 @@ const config = (() => {
 
 const commands = new Map()
 const intents = new Intents([
-    Intents.NON_PRIVILEGED, 
+    Intents.NON_PRIVILEGED,
     "GUILD_MEMBERS",
 ]);
-const bot = new Client({ /*partials: ['MESSAGE', 'CHANNEL', 'REACTION'], */ws: { intents }, fetchAllMembers: true, disableEveryone: true })
+const bot = new Client({ /*partials: ['MESSAGE', 'CHANNEL', 'REACTION'], */ ws: { intents }, fetchAllMembers: true, disableEveryone: true })
 bot.config = config
 bot.commands = commands
 bot.logging = logging;
@@ -81,15 +81,15 @@ fs.readdirSync(path.resolve(__dirname, 'commands'))
         logging.log(`${cnt}/${bot.commands.size} - Loading command ${f}`, "GENERIC");
         try {
             let command = require(`./commands/${f}`)
-            if (typeof command.run !== 'function') {
+            if(typeof command.run !== 'function') {
                 logging.log('Command is missing a run function!', "ERROR");
                 throw 'Command is missing a run function!'
-            } else if (!command.help || !command.help.name) {
+            } else if(!command.help || !command.help.name) {
                 logging.log('Command is missing a valid help object!', "ERROR");
                 throw 'Command is missing a valid help object!'
             }
             commands.set(command.help.name, command)
-        } catch (error) {
+        } catch(error) {
             logging.log(`Failed to load command ${f}: ${error}`, "ERROR");
             console.error(`Failed to load command ${f}: ${error}`)
         }
@@ -97,15 +97,17 @@ fs.readdirSync(path.resolve(__dirname, 'commands'))
 
 bot.on('ready', () => {
     logging.log(`Logged in as ${bot.user.tag} (ID: ${bot.user.id})`, "GENERIC");
-    bot.generateInvite({ permissions: [
-        'SEND_MESSAGES',
-        'MANAGE_MESSAGES',
-    ]}).then(invite => {
+    bot.generateInvite({
+        permissions: [
+            'SEND_MESSAGES',
+            'MANAGE_MESSAGES',
+        ]
+    }).then(invite => {
         logging.log(`Click here to invite the bot to your guild:\n${invite}`, "GENERIC");
         if(process.argv[2] == "test") {
             logging.log('----------------------------', "TESTING");
             if(bot.user.tag != "" && invite != "" &&
-               bot.user.id != "") {
+                bot.user.id != "") {
                 logging.log(`Logged in with success.`, "TESTING");
                 logging.log('----------------------------', "TESTING");
                 logging.log("Finished bot connection test.", "TESTING");
@@ -124,21 +126,21 @@ bot.on('ready', () => {
 })
 
 bot.on('message', async message => {
-    if (message.author.bot || !message.guild) {
+    if(message.author.bot || !message.guild) {
         return
     }
 
     let { content } = message
-    if (!content.startsWith(config.prefix)) {
+    if(!content.startsWith(config.prefix)) {
         return;
     }
     let split = content.substr(config.prefix.length).split(' ');
     split = split.slice(1);
-    
+
     let label = split[0]
     let args = split.slice(1)
 
-    if (commands.get(label)) {
+    if(commands.get(label)) {
         try {
             var currentCommand = commands.get(label);
             if(currentCommand.help.rank >= 1) {
@@ -162,8 +164,7 @@ bot.on('message', async message => {
 
 if(config.token && (!process.argv[2] == "test" || !process.argv[2])) {
     bot.login(config.token);
-} 
-else if(process.argv[2] == "test") {
+} else if(process.argv[2] == "test") {
     logging.log('----------------------------', "TESTING");
     logging.log(`Running tests. 0/${bot.commands.size}`, "TESTING");
     logging.log('----------------------------', "TESTING");
@@ -177,11 +178,10 @@ else if(process.argv[2] == "test") {
     });
     logging.log('Completed.', "TESTING");
     logging.log('----------------------------', "TESTING");
-        
+
     logging.log("Testing bot connection.", "TESTING");
     bot.login(config.token);
-} 
-else {
+} else {
     logging.log(`No valid token!`, "ERROR");
     console.log(config);
     console.log(process.argv[2]);
@@ -189,25 +189,25 @@ else {
 }
 
 var Version = "";
-fs.readFile('./Version.V', 'utf8', function (err,data) {
-    if (err) {
-      return console.log(err);
+fs.readFile('./Version.V', 'utf8', function(err, data) {
+    if(err) {
+        return console.log(err);
     }
     Version = data;
 });
 
 const cron = require("node-cron");
-cron.schedule('* * * * * *', function () {
+cron.schedule('* * * * * *', function() {
     //console.log('running a task every second');
-    fs.readFile('./Version.V', 'utf8', function (err,data) {
-        if (err) {
-          return console.log(err);
+    fs.readFile('./Version.V', 'utf8', function(err, data) {
+        if(err) {
+            return console.log(err);
         }
         if(Version != "") {
             if(data != Version) {
                 console.log(`Restarting as we are outdated! new version is: ${data}`);
                 process.exit(1);
-            } 
+            }
         }
-      });
+    });
 });

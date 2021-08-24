@@ -42,9 +42,10 @@ var checkOwnership = require('./Utils/ownerChecks').diaryOwnershipCheck
 var nodemailer = require('nodemailer')
 
 var config2 = {};
-if(!process.argv[2] == 'test') config2 = require("../config.json");
-else  config2 = require("../config.json.example");
+if(!process.argv[2]) config2 = require("../config.json");
+else  config2 = require("../config.example.json");
 
+console.log(config2);
 var transporter = nodemailer.createTransport({
     host: 'mail.spookiebois.club',
     port: 587,
@@ -76,7 +77,7 @@ const config = (() => {
     const token = config2.BOT_TOKEN
     if(!token) {
         logging.log('Missing BOT_TOKEN environment variable', 'ERROR')
-        console.error('Missing BOT_TOKEN environment variable')
+        console.error('Missing BOT_TOKEN environment variable', token);
         process.exit(0)
     }
 

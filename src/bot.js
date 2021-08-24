@@ -42,6 +42,7 @@ var checkOwnership = require('./Utils/ownerChecks').diaryOwnershipCheck
 var nodemailer = require('nodemailer')
 
 if(!process.argv[2] == 'test') var config2 = require("../config.json");
+else  var config2 = require("../config.json.example");
 
 var transporter = nodemailer.createTransport({
     host: 'mail.spookiebois.club',

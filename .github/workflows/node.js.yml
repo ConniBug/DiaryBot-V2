@@ -30,13 +30,3 @@ jobs:
     - run: npm ci
    # - run: npm run build --if-present
     - run: npm test
-
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: ~/Desktop/discordBots/DiaryBot-V2/Update
-

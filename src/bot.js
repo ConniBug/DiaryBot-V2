@@ -41,8 +41,9 @@ const logging = require('./Utils/logging')
 var checkOwnership = require('./Utils/ownerChecks').diaryOwnershipCheck
 var nodemailer = require('nodemailer')
 
-if(!process.argv[2] == 'test') var config2 = require("../config.json");
-else  var config2 = require("../config.json.example");
+var config2 = {};
+if(!process.argv[2] == 'test') config2 = require("../config.json");
+else  config2 = require("../config.json.example");
 
 var transporter = nodemailer.createTransport({
     host: 'mail.spookiebois.club',

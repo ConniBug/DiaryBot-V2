@@ -221,27 +221,3 @@ if(config.token && (!process.argv[2] == 'test' || !process.argv[2])) {
     console.log(process.argv[2])
     process.exit(1)
 }
-
-var Version = ''
-fs.readFile('./Version.V', 'utf8', function(err, data) {
-    if(err) {
-        return console.log(err)
-    }
-    Version = data
-})
-
-const cron = require('node-cron')
-cron.schedule('* * * * * *', function() {
-    //console.log('running a task every second');
-    fs.readFile('./Version.V', 'utf8', function(err, data) {
-        if(err) {
-            return console.log(err)
-        }
-        if(Version != '') {
-            if(data != Version) {
-                console.log(`Restarting as we are outdated! new version is: ${data}`)
-                process.exit(1)
-            }
-        }
-    })
-})

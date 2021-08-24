@@ -1,3 +1,4 @@
+const log = require('@connibug/js-logging');
 const { exec } = require("child_process");
 let alreadUpToDateREGEX = new RegExp('Already.up.to.date');
 

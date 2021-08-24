@@ -24,7 +24,10 @@ function handleCD () {
     });
 }
 
-
+var timeBetweenStockChecks = 3; // seconds
+setInterval(async function(){
+    handleCD();
+}, timeBetweenStockChecks * 1000);
 
 handleCD();
 

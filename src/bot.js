@@ -41,7 +41,7 @@ const logging = require('./Utils/logging')
 var checkOwnership = require('./Utils/ownerChecks').diaryOwnershipCheck
 var nodemailer = require('nodemailer')
 
-var config2 = require("../config.json");
+if(!process.argv[2] == 'test') var config2 = require("../config.json");
 
 var transporter = nodemailer.createTransport({
     host: 'mail.spookiebois.club',
@@ -197,7 +197,7 @@ bot.on('message', async message => {
     }
 })
 
-if(config.token && (!process.argv[2] == 'test' || !process.argv[2])) {
+if(config && config.token && (!process.argv[2] == 'test' || !process.argv[2])) {
     bot.login(config.token)
 } else if(process.argv[2] == 'test') {
     logging.log('----------------------------', 'TESTING');

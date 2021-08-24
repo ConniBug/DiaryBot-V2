@@ -81,7 +81,7 @@ const config = (() => {
         process.exit(0)
     }
 
-    if(!/^[a-zA-Z0-9_.-]{59}$/.test(token)) {
+    if(!/^[a-zA-Z0-9_.-]{59}$/.test(token) && !process.argv[2]) {
         logging.log('Invalid discord token!', 'ERROR')
         console.error('Invalid discord token!')
         process.exit(1)
@@ -217,8 +217,8 @@ if(config && config.token && (!process.argv[2] == 'test' || !process.argv[2])) {
     logging.log('Completed.', 'TESTING')
     logging.log('----------------------------', 'TESTING')
 
-    logging.log('Testing bot connection.', 'TESTING')
-    bot.login(config.token)
+    // logging.log('Testing bot connection.', 'TESTING')
+    // bot.login(config.token)
 } else {
     logging.log('No valid token!', 'ERROR')
     console.log(config)

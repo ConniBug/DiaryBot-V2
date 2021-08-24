@@ -6,20 +6,20 @@ const logging = require('./Utils/logging')
 var checkOwnership = require('./Utils/ownerChecks').diaryOwnershipCheck
 var nodemailer = require('nodemailer')
 
-require('dotenv').config()
+var config2 = require("../config.json");
 
 var transporter = nodemailer.createTransport({
     host: 'mail.spookiebois.club',
     port: 587,
     auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASS
+        user: config2.EMAIL,
+        pass: config2.EMAIL_PASS
     }
 })
 
 function sendMail(to_t, content, subject = 'N/A') {
     var mailOptions = {
-        from: process.env.EMAIL,
+        from: config2.EMAIL,
         to: to_t,
         subject: `${subject}`,
         html: `${content}`,
@@ -33,10 +33,10 @@ function sendMail(to_t, content, subject = 'N/A') {
     })
 }
 
-sendMail(process.env.ADMIN_EMAIL, 'Diary Bot Started', 'Diary Bot Started')
+sendMail(config2.ADMIN_EMAIL, 'Diary Bot Started', 'Diary Bot Started')
 
 const config = (() => {
-    const token = process.env.BOT_TOKEN
+    const token = config2.BOT_TOKEN
     if(!token) {
         logging.log('Missing BOT_TOKEN environment variable', 'ERROR')
         console.error('Missing BOT_TOKEN environment variable')
@@ -49,7 +49,7 @@ const config = (() => {
         process.exit(1)
     }
 
-    const prefix = process.env.BOT_PREFIX
+    const prefix = config2.BOT_PREFIX
     if(!prefix) {
         logging.log('Missing BOT_PREFIX env variable', 'ERROR')
         console.error('Missing BOT_PREFIX env variable')

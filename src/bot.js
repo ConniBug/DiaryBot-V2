@@ -219,6 +219,7 @@ if(config && config.token && (!process.argv[2] == 'test' || !process.argv[2])) {
 
     // logging.log('Testing bot connection.', 'TESTING')
     // bot.login(config.token)
+    process.exit(0);
 } else {
     logging.log('No valid token!', 'ERROR')
     console.log(config)

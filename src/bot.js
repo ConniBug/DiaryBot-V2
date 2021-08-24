@@ -33,7 +33,7 @@ function sendMail(to_t, content, subject = 'N/A') {
     })
 }
 
-sendMail(config2.ADMIN_EMAIL, 'Diary Bot Started', 'Diary Bot Started')
+// sendMail(config2.ADMIN_EMAIL, 'Diary Bot Started', 'Diary Bot Started')
 
 const config = (() => {
     const token = config2.BOT_TOKEN

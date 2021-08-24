@@ -200,9 +200,9 @@ bot.on('message', async message => {
 if(config.token && (!process.argv[2] == 'test' || !process.argv[2])) {
     bot.login(config.token)
 } else if(process.argv[2] == 'test') {
-    logging.log('----------------------------', 'TESTING')
-    logging.log(`Running tests. 0/${bot.commands.size}`, 'TESTING')
-    logging.log('----------------------------', 'TESTING')
+    logging.log('----------------------------', 'TESTING');
+    logging.log(`Running tests`);
+    logging.log('----------------------------', 'TESTING');
     var cnt = 0
     bot.commands.forEach(e => {
         cnt++

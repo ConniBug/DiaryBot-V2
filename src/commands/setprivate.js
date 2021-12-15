@@ -1,9 +1,8 @@
-// eslint-disable-next-line no-unused-vars
-var setPrivate = require("../Utils/perms/controlGroup").setPrivate;
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
 
 exports.run = (bot, msg, args) => {
-    setPrivate(msg);
-    msg.reply("Diary is now private!");
+    msg.channel.updateOverwrite(msg.guild.id, { VIEW_CHANNEL: false })
+    msg.reply('Diary is now private!')
 }
 
 exports.test = (bot) => {

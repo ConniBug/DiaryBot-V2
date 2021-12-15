@@ -1,14 +1,16 @@
-// eslint-disable-next-line no-unused-vars
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
+var config = require('../../config.json')
+
 exports.run = (bot, msg, args) => {
-    if (msg.author.id !== '299709641271672832') {
+    if (msg.author.id !== config.owner_id) {
         msg.channel.send('Bruh.').then(() => {
-            process.exit(0);
+            process.exit(0)
         })
-        return;
+        return
     }
 
     msg.channel.send('Restarting...').then(() => {
-        process.exit(0);
+        process.exit(0)
     })
 }
 

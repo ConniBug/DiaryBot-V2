@@ -1,11 +1,11 @@
-// eslint-disable-next-line no-unused-vars
-var checkOwnership = require("../Utils/ownerChecks").diaryOwnershipCheck;
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
+var checkOwnership = require('../Utils/ownerChecks').diaryOwnershipCheck
 
 exports.run = (bot, message, args) => {
     if(checkOwnership(message.channel, message.author)) {
-        message.reply("You have perms here.");
+        message.reply('You have perms here.')
     } else {
-        message.reply("You do not have perms here.");
+        message.reply('You do not have perms here.')
     }
 }
 

@@ -1,9 +1,7 @@
-// eslint-disable-next-line no-unused-vars
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
 
 exports.run = async(bot, msg, args) => {
-    let channel = msg.channel;
-
-    channel.delete();
+    msg.channel.delete()
 }
 
 exports.test = (bot) => {

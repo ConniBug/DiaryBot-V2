@@ -39,9 +39,7 @@ const { Client, Intents } = require('discord.js')
 
 var checkOwnership = require('./Utils/ownerChecks').diaryOwnershipCheck
 
-var config = {};
-if(!process.argv[2]) config = require("../config.json");
-else  config = require("../config.json");
+var config = require("../config.json");
 
 console.log(config);
 
@@ -63,7 +61,7 @@ config = (() => {
         process.exit(1)
     }
 
-    const ownersDiscordTag = config.ownersDiscordTag
+    const ownersDiscordTag = `<@${config.owner_id}>`
     if(ownersDiscordTag == "1") {
         ownersDiscordTag = null
     }

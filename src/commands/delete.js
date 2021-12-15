@@ -2,7 +2,6 @@
 
 exports.run = async(bot, msg, args) => {
     let channel = msg.channel;
-
     channel.delete();
 }
 

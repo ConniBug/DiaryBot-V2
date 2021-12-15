@@ -1,8 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-var setPrivate = require("../Utils/perms/controlGroup").setPrivate;
 
 exports.run = (bot, msg, args) => {
-    setPrivate(msg);
+    msg.channel.updateOverwrite(msg.guild.id, { VIEW_CHANNEL: false });
     msg.reply("Diary is now private!");
 }
 

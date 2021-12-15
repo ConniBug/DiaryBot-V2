@@ -1,8 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-var setPublic = require("../Utils/perms/controlGroup").setPublic;
 
 exports.run = (bot, msg, args) => {
-    setPublic(msg);
+    msg.channel.updateOverwrite(msg.guild.id, { VIEW_CHANNEL: true });
     msg.reply("Diary is now public!");
 }
 

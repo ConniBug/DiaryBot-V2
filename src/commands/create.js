@@ -1,5 +1,5 @@
+var config = require("../../config.json");
 // eslint-disable-next-line no-unused-vars
-var diaryChannelName = "diaries";
 var roleIDs = "";
 
 exports.run = (bot, message, args) => {
@@ -17,7 +17,8 @@ exports.run = (bot, message, args) => {
         )
         .then(channel => {
             var willStop = false;
-            let category = message.guild.channels.cache.find(c => c.name == diaryChannelName && c.type == "category");
+            console.log(config.DiaryCategory_ID);
+            let category = message.guild.channels.cache.find(c => c.id == config.DiaryCategory_ID && c.type == "category");
 
             if (!category) {
                 bot.logging.log("No catagory configed placed room randomly!", "GENERIC");
@@ -40,24 +41,8 @@ exports.run = (bot, message, args) => {
                 },
                 {
                     id: message.guild.id,
-                    deny: ['VIEW_CHANNEL','SEND_MESSAGES'],
-                },
-                {
-                    id: roleIDs[1],
-                    deny: ['VIEW_CHANNEL','SEND_MESSAGES'],
-                },
-                {
-                    id: roleIDs[2],
-                    deny: ['VIEW_CHANNEL','SEND_MESSAGES'],
-                },
-                {
-                    id: roleIDs[3],
-                    deny: ['VIEW_CHANNEL','SEND_MESSAGES'],
-                },
-                {
-                    id: roleIDs[4],
-                    deny: ['VIEW_CHANNEL','SEND_MESSAGES'],
-                },
+                    deny: ['VIEW_CHANNEL'],
+                }
             ], 'Needed to change permissions').catch(console.error);
 
             message.channel.send(`Heres your diary <@${message.author.id}>! - <#${channel.id}>`)

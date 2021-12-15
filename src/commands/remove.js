@@ -18,7 +18,7 @@ exports.run = async(bot, msg, args) => {
         `Removing ${usr_cache.find(r => r.id === userReference).user.username} from ${usr_cache.find(r => r.id === msg.author.id).user.username}'s diary!`);
     msg.reply(`Removing ${usr_cache.find(r => r.id === userReference).user.username} from your diary!`);
 
-    channel.updateOverwrite(userReference, { VIEW_CHANNEL: null, SEND_MESSAGES: null });
+    channel.updateOverwrite(userReference, { VIEW_CHANNEL: false, SEND_MESSAGES: false });
 }
 
 exports.test = (bot) => {

@@ -1,6 +1,7 @@
+var config = require("../../config.json");
 // eslint-disable-next-line no-unused-vars
 exports.run = (bot, msg, args) => {
-    if (msg.author.id !== '299709641271672832') {
+    if (msg.author.id !== config.owner_id) {
         msg.channel.send('Bruh.').then(() => {
             process.exit(0);
         })

@@ -1,6 +1,6 @@
 {
   "name": "diarybot-v2",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "DiaryBot-V2.",
   "main": "src/bot.js",
   "repository": "https://github.com/ConniBug/DiaryBot-V2.git",

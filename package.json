@@ -18,7 +18,8 @@
   "scripts": {
     "start": "node .",
     "build": "node . test",
-    "test": "npm version patch & node . test",
+    "pretest": "npm version patch",
+    "test": "node . test",
     "lint": "eslint src"
   },
   "devDependencies": {

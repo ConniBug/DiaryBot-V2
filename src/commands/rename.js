@@ -1,10 +1,9 @@
-// eslint-disable-next-line no-unused-vars
-const ownershipCheck = require("../Utils/ownerChecks").diaryOwnershipCheck;
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
 
 exports.run = (bot, msg, args) => {
-    let newName = args.join(' ');
-    msg.channel.setName(newName);
-    msg.reply(`Channel name changed to: ${newName}`);
+    let newName = args.join(' ')
+    msg.channel.setName(newName)
+    msg.reply(`Channel name changed to: ${newName}`)
 }
 
 exports.test = (bot) => {

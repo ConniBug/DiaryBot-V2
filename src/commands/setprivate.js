@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-unused-vars
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
 
 exports.run = (bot, msg, args) => {
-    msg.channel.updateOverwrite(msg.guild.id, { VIEW_CHANNEL: false });
-    msg.reply("Diary is now private!");
+    msg.channel.updateOverwrite(msg.guild.id, { VIEW_CHANNEL: false })
+    msg.reply('Diary is now private!')
 }
 
 exports.test = (bot) => {

@@ -1,11 +1,8 @@
-// eslint-disable-next-line no-unused-vars
-const fs = require('fs')
-
-var version = require("../../package.json").version;
-
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
+var version = require('../../package.json').version
 
 exports.run = async(bot, msg, args) => {
-    msg.channel.send(`Version: ${version}`);
+    msg.channel.send(`Version: ${version}`)
 }
 
 exports.test = (bot) => {

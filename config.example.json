@@ -1,5 +1,7 @@
 {
-    "BOT_TOKEN": "1",
-    "BOT_PREFIX": "1",
-    "ADMIN_EMAIL": "1"
+    "BOT_TOKEN": "",
+    "BOT_PREFIX": "",
+    "ADMIN_EMAIL": "",
+    "owner_id": "",
+    "DiaryCategory_ID": ""
 }

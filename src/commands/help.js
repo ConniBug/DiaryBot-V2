@@ -34,7 +34,7 @@ exports.run = (bot, msg, args) => {
             .setTitle('Diary-Bot - Other')
         bot.commands.forEach(e => {
             if(e.help.rank > 1) {
-                etcTier.addField(e.help.name, e.help.description + "\n \n Usage \n" + e.help.usage, false)
+                etcTier.addField(e.help.name, e.help.description + '\n \n Usage \n' + e.help.usage, false)
             }
         })
         msg.channel.send(etcTier)

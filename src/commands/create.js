@@ -1,12 +1,8 @@
 /*eslint no-unused-vars: ["error", { "args": "none" }]*/
 
 var config = require('../../config.json')
-var roleIDs = ''
 
 exports.run = (bot, message, args) => {
-    if(roleIDs == '') {
-        roleIDs = require('../Utils/perms/getRoleIDs').ids(message)
-    }
     message.delete().catch(O_o => { })
 
     if (message.guild.me.hasPermission('MANAGE_CHANNELS')) {
@@ -16,11 +12,11 @@ exports.run = (bot, message, args) => {
                 topic: `diary-${message.author.id}`,
             }
         ).then(channel => {
-            var willStop = false;
+            var willStop = false
             let category = message.guild.channels.cache.find(c => c.id == config.DiaryCategory_ID && c.type == 'category')
 
             if (!category) {
-                bot.logging.log('No catagory configed placed room randomly!');
+                bot.logging.log('No catagory configed placed room randomly!')
 
                 message.channel.send('No catagory configed placed room randomly!')
                     .then(msg => {
@@ -42,13 +38,13 @@ exports.run = (bot, message, args) => {
                     id: message.guild.id,
                     deny: ['VIEW_CHANNEL'],
                 }
-            ], 'Needed to change permissions').catch(console.error);
+            ], 'Needed to change permissions').catch(console.error)
 
             message.channel.send(`Heres your diary <@${message.author.id}>! - <#${channel.id}>`).then(msg => {
                 msg.delete({ timeout: 10000 })
             }).catch(console.error)
 
-        });
+        })
     }
     else {
         bot.logging.log('Missing perms to create/manage channels!')

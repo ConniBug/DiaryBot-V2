@@ -1,9 +1,9 @@
 # DiaryBot-V2
 [![Node.js CI](https://github.com/ConniBug/DiaryBot-V2/actions/workflows/node.js.yml/badge.svg)](https://github.com/ConniBug/DiaryBot-V2/actions/workflows/node.js.yml)
 
-This is a discord bot designed to allow users to create private channels witch they have full control over.
+This is a discord bot designed to allow users to create private channels that they have alot of control over.
 
-commands (everyone) -
+commands -
 <br> 
 `<prefix>info` - shows bot info
 <br> 
@@ -11,13 +11,12 @@ commands (everyone) -
 <br> 
 `<prefix>public/private` - will make your diary public/private
 <br> 
-`<prefix>close` - archives the diary so only high ranking staff can see it, again high ranking staff can undo this if need be (this is so if someone breaks discord ToS or our rules we have proof) if youd like staff can perm delete it for you
+`<prefix>close` - archives the diary so only staff can see it
 <br> 
 `<prefix>add <userid or mention>` - Used to add people to your diary
 <br> 
 `<prefix>remove <userid or mention>` - Used to remove people from  your diary
 <br>
-
 `<prefix>rename <new channel name>` - Used to rename your diary!
 <br>
 `<prefix>commenting on/off` - used to enabled and disable all users been able to write in your diary.

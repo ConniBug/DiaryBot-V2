@@ -2,6 +2,8 @@ const log = require('@connibug/js-logging');
 const { exec } = require("child_process");
 let alreadUpToDateREGEX = new RegExp('Already.up.to.date');
 
+log.setupFileLogging("./");
+
 function handleCD () {
     exec("git stash", (error, stdout, stderr) => {
         exec("git pull", (error, stdout, stderr) => {
@@ -65,7 +67,10 @@ config = (() => {
     if(ownersDiscordTag == "1") {
         ownersDiscordTag = null
     }
-    return { token, prefix, ownersDiscordTag }
+    const activity = config.activity;
+    const botType = config.type;
+    const status = config.status;
+    return { token, prefix, ownersDiscordTag, status, activity, botType }
 })()
 
 const commands = new Map()
@@ -114,7 +119,14 @@ bot.on('ready', () => {
     }).then(invite => {
         log.log(`Click here to invite the bot to your guild:\n${invite}`, 'GENERIC')
     })
-})
+    bot.user.setPresence({
+      status: config.status,
+      activity: {
+          name: config.activity,
+          type: config.type
+      },
+    })
+});
 
 bot.on('message', async message => {
     if(message.author.bot || !message.guild) {

@@ -27,10 +27,10 @@ function handleCD () {
 
 var timeBetweenStockChecks = 3; // seconds
 setInterval(async function(){
-    //handleCD();
+    handleCD();
 }, timeBetweenStockChecks * 1000);
 
-// handleCD();
+handleCD();
 
 
 const path = require('path')

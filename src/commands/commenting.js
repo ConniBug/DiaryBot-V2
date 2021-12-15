@@ -1,14 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-var control = require("../Utils/perms/controlGroup");
 
 exports.run = (bot, msg, args) => {
     if(args[0] == "on") {
-        control.allowCommenting(msg);
+        msg.channel.updateOverwrite(msg.guild.id, { SEND_MESSAGES: true })
         msg.reply("Public commenting now allowed!");
     } else if(args[0] == "off") {
-        control.dontAllowCommenting(msg);
+        msg.channel.updateOverwrite(msg.guild.id, { SEND_MESSAGES: false })
         msg.reply("Public commenting is now not allowed!");
-
     }
 }
 

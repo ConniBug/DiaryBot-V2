@@ -3,5 +3,8 @@
     "BOT_PREFIX": "",
     "ADMIN_EMAIL": "",
     "owner_id": "",
-    "DiaryCategory_ID": ""
+    "DiaryCategory_ID": "",
+    "status": "",
+    "activity": "",
+    "type": "WATCHING"
 }

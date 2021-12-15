@@ -5,28 +5,28 @@ This is a discord bot designed to allow users to create private channels that th
 
 ## Prerequiristes
 
-[https://nodejs.org/en/](Node JS - 14)
+[Node JS - 14](https://nodejs.org/en/)
 
 # Setup
 
 
-## Basic
+### Basic
 
 npm install
 npm start
 
-## PM2 Setup
+### PM2 Setup
 
 npm install pm2@latest -g
 
 pm2 start bot.js
 
-## Docker
+### Docker
 
 docker build --pull --rm -f "dockerfile" -t diarybotv2:latest "."
 docker start diarybotv2:latest --restart=always
 
-commands -
+# commands
 <br> 
 `<prefix>info` - shows bot info
 <br> 

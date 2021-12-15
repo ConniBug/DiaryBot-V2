@@ -1,13 +1,33 @@
-FROM node:12.18.1
+# FROM node:12.18.1
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+# COPY ["package.json", "package-lock.json*", "./"]
 
+# RUN npm install --production
+
+# COPY . .
+
+# CMD [ "node", "./src/bot.js" ]
+
+# Install the app dependencies in a full UBI Node docker image
+FROM registry.access.redhat.com/ubi8/nodejs-14:latest
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install app dependencies
 RUN npm install --production
 
-COPY . .
+# Copy the dependencies into a Slim Node docker image
+FROM registry.access.redhat.com/ubi8/nodejs-14-minimal:latest
+  
+# Install app dependencies
+COPY --from=0 /opt/app-root/src/node_modules /opt/app-root/src/node_modules
+COPY . /opt/app-root/src
 
-CMD [ "node", "./src/bot.js" ]
+ENV NODE_ENV production
+
+CMD ["npm", "start"]

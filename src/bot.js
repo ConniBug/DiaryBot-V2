@@ -42,9 +42,6 @@ const { Client, Intents } = require('discord.js')
 var checkOwnership = require('./Utils/ownerChecks').diaryOwnershipCheck
 
 var config = require("../config.json");
-
-console.log(config);
-
 config = (() => {
     const token = config.BOT_TOKEN
     if(!token) {
@@ -84,9 +81,10 @@ bot.commands = commands
 bot.logging = log
 bot.ownersDiscordTag = config
 
-log.log('----------------------------')
-log.log(`0/${bot.commands.size} - Loading commands.`)
-log.log('----------------------------')
+log.log('----------------------------');
+// log.log(`0/${bot.commands.size} - Loading commands.`)
+log.log(`Loading commands.`);
+log.log('----------------------------');
 var cnt = 0
 fs.readdirSync(path.resolve(__dirname, 'commands'))
     .filter(f => f.endsWith('.js'))

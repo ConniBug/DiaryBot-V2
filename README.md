@@ -5,7 +5,7 @@ This is a discord bot designed to allow users to create private channels that th
 
 ## Prerequisites
 
-Node JS - 14]([https://nodejs.org/en/)
+[Node JS - 14]([https://nodejs.org/en/)
 
 # Setup
 

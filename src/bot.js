@@ -27,12 +27,14 @@ function handleCD () {
     });
 }
 
-var timeBetweenStockChecks = 3; // seconds
-setInterval(async function(){
-    //handleCD();
-}, timeBetweenStockChecks * 1000);
 
-// handleCD();
+if(config.autoUpdate.enabled) {
+  setInterval(async function(){
+      handleCD();
+  }, config.autoUpdate.timeBetweenChecks * 1000);
+  
+  handleCD();  
+}
 
 
 const path = require('path')

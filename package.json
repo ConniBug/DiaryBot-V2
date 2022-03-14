@@ -5,7 +5,7 @@
   "main": "src/bot.js",
   "repository": "https://github.com/ConniBug/DiaryBot-V2.git",
   "author": "Conni <Conni@spookiebois.com>",
-  "license": "AGPL-3.0 License",
+  "license": "AGPL-3.0",
   "dependencies": {
     "@connibug/js-logging": "^2.0.1",
     "colors": "^1.4.0",
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "node .",
-    "build": "node . test",
+    "build": "npm run lint && node . test",
     "pretest": "npm version patch",
     "test": "node . test",
     "lint": "eslint src"

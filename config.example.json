@@ -6,5 +6,9 @@
     "DiaryCategory_ID": "",
     "status": "",
     "activity": "",
-    "type": "WATCHING"
+    "type": "WATCHING",
+    "autoUpdate": {
+      "enabled": false,
+      "timeBetweenChecks": 3
+    }
 }
